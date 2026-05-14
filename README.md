@@ -1,6 +1,6 @@
 ## MUC-4 Revisited: Document-level Event Analysis Beyond Span-based Arguments
 
-This repository contains a pipeline for **abstractive MUC‑4 event extraction** using LLMs with LoRA fine‑tuning from the paper: [MUC-4 Revisited: Document-level Event Analysis
+This repository contains a pipeline for **abstractive event analysis on MUC‑4 ** using LLMs with LoRA fine‑tuning from the paper: [MUC-4 Revisited: Document-level Event Analysis
 Beyond Span-based Arguments](http://www.lrec-conf.org/proceedings/lrec2026/pdf/2026.lrec2026-1.617.pdf)
 
 This repo includes:
@@ -22,18 +22,18 @@ This repo includes:
 - **`configs/`**
   - `muc_data.py`: Field templates that map between human‑readable labels (e.g. `"weapon"`) and official MUC‑4 field names (e.g. `"incident_instrument_id"`). 
 - **`convert_data/`**
-  - `muc4_data_processor.py`: Turns `data/Processed/` JSON into **training CSVs** for instruction‑tuning.
-    - Produces **one row per document** where the label is a **JSON array of event objects**.
+  - `muc4_data_processor.py`: Turns `data/Processed/` JSON into training CSVs for instruction‑tuning.
+    - Produces one row per document where the label is a JSON array of event objects.
     - Outputs CSVs under `muc4_processed_multi/`:
       - `muc4_{train,val,test}.csv` and `muc4_combined.csv`
-  - `convert_preds.py`: Converts model prediction JSONL files into **evaluation‑ready JSONL** format (`id` + `templates[...]` with official MUC‑4 field names).
+  - `convert_preds.py`: Converts model prediction JSONL files into JSONLs for evaluation format (`id` + `templates[...]` ).
 - **`scripts/`**
   - `finetune.py`: Generic LoRA fine‑tuning on instruction‑following CSVs.
   - `train_muc4_event_extraction.py`: MUC‑4 specific training.
   - `evaluate_muc4_model.py`:
     - Defines `MUC4EventExtractor`, which loads a base model + LoRA adapters 
   - `batch_infer_muc4.py`:
-    - Uses `MUC4EventExtractor` to run **batch inference** over the test data
+    - Uses `MUC4EventExtractor` to run batch inference over the test data
     - Writes one JSONL record per document with `doc_id`, `instruction`, `input`, `gold_output`, and `pred_output`.
 - **`instructions.py`**
   - Defines the shared instruction strings 
