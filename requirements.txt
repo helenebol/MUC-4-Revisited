@@ -1,0 +1,14 @@
+accelerate>=1.12.0
+bitsandbytes>=0.48.1
+datasets>=4.5.0
+fire>=0.6.0
+pandas>=2.2.3
+peft>=0.14.0
+pyarrow>=23.0.0
+pyyaml>=6.0.3
+regex>=2025.9.18
+safetensors>=0.7.0
+sentencepiece>=0.2.0
+torch>=2.4.1
+tqdm>=4.67.1
+transformers>=4.57.6
